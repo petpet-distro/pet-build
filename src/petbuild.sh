@@ -52,8 +52,9 @@ for subpkgname in $subpkgs; do
 	petcp()
 	{
 		k="${1%/*}";
+
 		mkdir -p "$pkgdir/$subpkgname/$k"
-		cp -rv "$bundledir/$k" "$pkgdir/$subpkgname/$k/"
+		cp -rv "$bundledir/$1" "$pkgdir/$subpkgname/$k"
 	}
 
 	"$j";
