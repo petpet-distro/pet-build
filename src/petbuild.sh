@@ -53,7 +53,7 @@ for subpkgname in $subpkgs; do
 	{
 		k="${1%/*}";
 		mkdir -p "$pkgdir/$subpkgname/$k"
-		cp -rv "$bundledir/$1" "$pkgdir/$subpkgname/$k/"
+		cp -rv "$bundledir/$k" "$pkgdir/$subpkgname/$k/"
 	}
 
 	"$j";
