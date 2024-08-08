@@ -30,7 +30,7 @@ cmdExists()
 printf "Building %s v%s-r%s\n" "$pkgname" "$pkgver" "$pkgrel";
 
 cd "$fetchdir";
-curl "$pkgtb" > "ugh.tar";
+curl -L "$pkgtb" > "ugh.tar";
 tar xvf "ugh.tar";
 cd "$pkgname-$pkgver";
 cp -r * "$builddir/";
