@@ -49,7 +49,7 @@ for subpkgname in $subpkgs; do
 	mkdir -p "$pkgdir/$subpkgname"
 	cd "$pkgdir/$subpkgname"
 
-	export subpkgdir="$subpkgdir/$subpkgname"
+	export subpkgdir="$pkgdir/$subpkgname"
 
 	petcp()
 	{
@@ -59,7 +59,7 @@ for subpkgname in $subpkgs; do
 		cp -rv "$bundledir/$1" "$pkgdir/$subpkgname/$k"
 	}
 
-	"$j";
+	subpkgdir="$subpkgdir" "$j";
 
 	tar cpf - * | xz -vvve9 -T1 > "$pkgdir/$subpkgname.tar.xz";
 	pet-mdgen "$subpkgname" "$pkgver-r$pkgrel" "— car tire —" "$pkgdeps" > "$pkgdir/$subpkgname.json"
