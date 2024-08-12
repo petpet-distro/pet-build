@@ -49,7 +49,7 @@ for subpkgname in $subpkgs; do
 	mkdir -p "$pkgdir/$subpkgname"
 	cd "$pkgdir/$subpkgname"
 
-	export packagedir="$subpkgdir/$subpkgname"
+	export subpkgdir="$subpkgdir/$subpkgname"
 
 	petcp()
 	{
