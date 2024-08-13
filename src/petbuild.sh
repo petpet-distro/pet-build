@@ -62,7 +62,7 @@ for subpkgname in $subpkgs; do
 	subpkgdir="$subpkgdir" "$j";
 
 	tar cpf - * | xz -vvve9 -T1 > "$pkgdir/$subpkgname.tar.xz";
-	pet-mdgen "$subpkgname" "$pkgver-r$pkgrel" "$pkgdesc" "$pkgdeps" > "$pkgdir/$subpkgname.json"
+	pet-mdgen "$subpkgname" "$pkgver-r$pkgrel" "$pkgdesc" "$pkgrdeps" > "$pkgdir/$subpkgname.json"
 done
 
 
