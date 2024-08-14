@@ -29,11 +29,13 @@ cmdExists()
 
 printf "Building %s v%s-r%s\n" "$pkgname" "$pkgver" "$pkgrel";
 
-cd "$fetchdir";
-curl -L "$pkgtb" > "ugh.tar";
-tar xvf "ugh.tar";
-cd "$pkgname-$pkgver";
-cp -r * "$builddir/";
+if [ "$pkgtb" != "" ]; then
+	cd "$fetchdir";
+	curl -L "$pkgtb" > "ugh.tar";
+	tar xvf "ugh.tar";
+	cd "$pkgname-$pkgver";
+	cp -r * "$builddir/";
+fi
 
 cd "$builddir";
 if [ "$(cmdExists "configure")" = "y" ]; then
@@ -57,6 +59,14 @@ for subpkgname in $subpkgs; do
 
 		mkdir -p "$pkgdir/$subpkgname/$k"
 		cp -rv "$bundledir/$1" "$pkgdir/$subpkgname/$k"
+	}
+
+	spetcp()
+	{
+		k="${1&/*}"
+
+		mkdir -p "$pkgdir/subpkgname/$k"
+		cp "$bundledir/$1" "$pkgdir/$subpkgname/$k"
 	}
 
 	subpkgdir="$subpkgdir" "$j";
