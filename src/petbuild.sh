@@ -29,8 +29,6 @@ cmdExists()
 
 printf "Building %s v%s-r%s\n" "$pkgname" "$pkgver" "$pkgrel";
 
-if [ "$pkgtbdir"  ]
-
 if [ "$pkgtb" != "" ]; then
 	cd "$fetchdir";
 	curl -L "$pkgtb" > "ugh.tar";
@@ -39,8 +37,9 @@ if [ "$pkgtb" != "" ]; then
 	if [ "$pkgtbdir" = "" ]; then
 		cd "$pkgname-$pkgver";
 	else
-		cd "$pkgtbdir"
+		cd "$pkgtbdir";
 	fi
+
 	cp -r * "$builddir/";
 fi
 
