@@ -7,12 +7,14 @@ builddir="$shitdir/build";
 pkgdir="$shitdir/pkgs"
 bundledir="$shitdir/bundle";
 fetchdir="$shitdir/fetch"
+patchesdir="$shitdir/patches"
 
 mkdir -p "$shitdir";
 mkdir -p "$builddir";
 mkdir -p "$pkgdir";
 mkdir -p "$bundledir";
 mkdir -p "$fetchdir";
+mkdir -p "$patchesdir";
 
 cmdExists()
 {
@@ -29,6 +31,12 @@ cmdExists()
 
 printf "Building %s v%s-r%s\n" "$pkgname" "$pkgver" "$pkgrel";
 
+if [ "$pkgpatches" != "" ]; then
+	for i in $pkgpatches; do
+		cp -rv "$i" "$pkgpatches/$i"
+	done
+fi
+
 if [ "$pkgtb" != "" ]; then
 	cd "$fetchdir";
 	curl -L "$pkgtb" > "ugh.tar";
@@ -44,6 +52,7 @@ if [ "$pkgtb" != "" ]; then
 fi
 
 cd "$builddir";
+
 if [ "$(cmdExists "configure")" = "y" ]; then
 	configure;
 fi
